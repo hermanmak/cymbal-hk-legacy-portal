@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create HKD Settlement Order</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body style="padding-top: 30px;">
+<div class="container" style="max-width: 540px;">
+  <h3>Create New HKD Merchant Order</h3>
+  <form method="post" action="/orders">
+    <div class="form-group">
+      <label for="merchantId">Merchant</label>
+      <select class="form-control" id="merchantId" name="merchantId" required="required">
+        <option th:each="m : ${merchants}"
+                th:value="${m.id}"
+                th:text="${m.merchantCode + ' — ' + m.name + ' (' + m.tier + ')'}">Merchant</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="amountHkd">Gross Amount (HKD)</label>
+      <input type="number" step="0.01" min="1" class="form-control" id="amountHkd" name="amountHkd" placeholder="12500.00" required="required" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Order</button>
+    <a href="/dashboard" class="btn btn-default">Cancel</a>
+  </form>
+</div>
+</body>
+</html>
